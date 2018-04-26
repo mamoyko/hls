@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="src/bootstrap.min.css">
+  <link rel="stylesheet" href="src/video-js.css">
+  <title>VIDEO JS</title>
+</head>
+<body>
+  <div class="container">
+    <div class="col-md-12">
+      <h1>Sample HLS Player</h1>
+    </div>
+    <div class="col-md-12" style="width:520px;height:320px;border:1px solid #333">
+      <video-js id=ng-player width=480 height=320 controls></video-js>
+    </div>
+    <div class="col-md-12" style="margin-top:10px">
+      <input type="text" id="stream_url" class="form-control">
+      <button type="button" class="btn btn-primary" id="loadbtn">Load</button>
+    </div>
+  </div>
+<script src="src/video.js"></script>
+<script src="src/videojs-http-streaming.js"></script>
+<script>
+    var player = videojs('ng-player');
+    var btnload = document.getElementById("loadbtn");
+    var streamUrl = document.getElementById("stream_url");
+    streamUrl.value = 'http://stream.oriental-game.com/hls/Ggame1table2.m3u8'
+    btnload.addEventListener("click", function renderVideo(){
+        var stream_url = streamUrl.value;
+        var mimetype = 'application/x-mpegURL';
+        player.src({
+          src : stream_url,
+          type : mimetype
+        });
+    });
+
+</script>
+</body>
+</html>
